@@ -10,7 +10,7 @@ import (
 )
 
 func getSrcPath(path string) string {
-	return fmt.Sprintf("./files/%s", path)
+	return fmt.Sprintf("./docs/files/%s", path)
 }
 func getDestPath(path string) string {
 	return fmt.Sprintf("./docs/chapters/%s", path)
