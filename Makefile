@@ -1,5 +1,5 @@
 clean: 
-	rm *.io
+	rm go-sitebuilder
 	rm ./docs/chapters/*
 .PHONY: clean
 
