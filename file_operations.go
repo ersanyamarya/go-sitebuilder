@@ -8,7 +8,7 @@ import (
 )
 
 func getFileAsString(path string) (string, error) {
-	chapterHTMLFile, err := ioutil.ReadFile(utility.GetSrcPath(path))
+	chapterHTMLFile, err := ioutil.ReadFile(path)
 	if err != nil {
 		return "", err
 	}
@@ -26,7 +26,7 @@ func writeHTMLFile(path string, content string) error {
 
 // GetChaptersFromFile gets a chapterPage from the filename
 func (pages *Page) GetChaptersFromFile(path string) error {
-	chaptersFile, err := ioutil.ReadFile(utility.GetSrcPath(path))
+	chaptersFile, err := ioutil.ReadFile(utility.GetJSONSrcPath(path))
 	if err != nil {
 		return err
 	}

@@ -7,9 +7,14 @@ import (
 	"strings"
 )
 
-// GetSrcPath is the directory path for template files
-func GetSrcPath(fileName string) string {
-	return fmt.Sprintf("%s%s", srcPathString, fileName)
+// GetJSONSrcPath is the directory path for template files
+func GetJSONSrcPath(fileName string) string {
+	return fmt.Sprintf("%s%s", srcJSONPathString, fileName)
+}
+
+// GetHTMLSrcPath is the directory path for template files
+func GetHTMLSrcPath(fileName string) string {
+	return fmt.Sprintf("%s%s", srcHTMLPathString, fileName)
 }
 
 // GetDestPath is the directory path for output files

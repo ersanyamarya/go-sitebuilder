@@ -51,7 +51,7 @@ func (chapter Chapter) getParagraphs() string {
 
 // CreateHTML will create HTML for chapters
 func (chapter Chapter) CreateHTML() error {
-	chapterHTM, err := getFileAsString("chapter.html")
+	chapterHTM, err := getFileAsString(utility.GetHTMLSrcPath("chapter.html"))
 	if err != nil {
 		return err
 	}
