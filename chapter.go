@@ -24,10 +24,10 @@ type Chapter struct {
 }
 
 func (chapter Chapter) getImageURL() string {
-	return fmt.Sprintf("./assets/images/%s", chapter.FeaturedImage)
+	return fmt.Sprintf("../assets/images/%s", chapter.FeaturedImage)
 }
 func (paragraph Paragraph) getImageURL() string {
-	return fmt.Sprintf("./assets/images/%s", paragraph.Image)
+	return fmt.Sprintf("../assets/images/%s", paragraph.Image)
 }
 
 func (chapter Chapter) getParagraphs() string {
