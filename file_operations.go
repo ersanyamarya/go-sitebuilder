@@ -2,37 +2,13 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
-	"log"
-	"regexp"
-	"strings"
+
+	utility "./utility"
 )
 
-func getSrcPath(path string) string {
-	return fmt.Sprintf("./docs/files/%s", path)
-}
-func getDestPath(path string) string {
-	return fmt.Sprintf("./docs/chapters/%s", path)
-}
-func trimAllSpaces(text string) string {
-	replacer := strings.NewReplacer(" ", "", "\n", "")
-	return replacer.Replace(text)
-}
-
-func getFileName(title string) string {
-	reg, err := regexp.Compile("[^a-zA-Z0-9]+")
-	if err != nil {
-		log.Fatal(err)
-	}
-	title = reg.ReplaceAllString(title, "")
-	name := trimAllSpaces(strings.ToLower(title))
-	return fmt.Sprintf("%s.html", name)
-
-}
-
 func getFileAsString(path string) (string, error) {
-	chapterHTMLFile, err := ioutil.ReadFile(getSrcPath(path))
+	chapterHTMLFile, err := ioutil.ReadFile(utility.GetSrcPath(path))
 	if err != nil {
 		return "", err
 	}
@@ -41,7 +17,7 @@ func getFileAsString(path string) (string, error) {
 
 func writeHTMLFile(path string, content string) error {
 	toWrite := []byte(content)
-	err := ioutil.WriteFile(getDestPath(path), toWrite, 0644)
+	err := ioutil.WriteFile(utility.GetDestPath(path), toWrite, 0644)
 	if err != nil {
 		return err
 	}
@@ -50,7 +26,7 @@ func writeHTMLFile(path string, content string) error {
 
 // GetChaptersFromFile gets a chapterPage from the filename
 func (pages *Page) GetChaptersFromFile(path string) error {
-	chaptersFile, err := ioutil.ReadFile(getSrcPath(path))
+	chaptersFile, err := ioutil.ReadFile(utility.GetSrcPath(path))
 	if err != nil {
 		return err
 	}

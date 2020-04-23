@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"strings"
+
+	utility "./utility"
 )
 
 // Paragraph is the content inside chapter
@@ -24,10 +26,10 @@ type Chapter struct {
 }
 
 func (chapter Chapter) getImageURL() string {
-	return fmt.Sprintf("../assets/images/%s", chapter.FeaturedImage)
+	return fmt.Sprintf("%s%s", utility.ImageLocation, chapter.FeaturedImage)
 }
 func (paragraph Paragraph) getImageURL() string {
-	return fmt.Sprintf("../assets/images/%s", paragraph.Image)
+	return fmt.Sprintf("%s%s", utility.ImageLocation, paragraph.Image)
 }
 
 func (chapter Chapter) getParagraphs() string {
@@ -35,9 +37,9 @@ func (chapter Chapter) getParagraphs() string {
 	for _, para := range chapter.Content {
 		paraHTML = paraHTML + fmt.Sprintf(`
 		<li>
-		<h3>%s</h3>
-		<img src="%s" alt="%s" class="para_img">
-		<p>%s</p>
+			<h3>%s</h3>
+			<img src="%s" alt="%s" class="para_img">
+			<p>%s</p>
 		</li>
 		<hr>
 		`, para.Title, para.getImageURL(),
@@ -59,7 +61,7 @@ func (chapter Chapter) CreateHTML() error {
 		chapter.Description, "[CONTENT]", chapter.getParagraphs())
 	result := replacer.Replace(chapterHTM)
 
-	err = writeHTMLFile(getFileName(chapter.Title), result)
+	err = writeHTMLFile(utility.GetFileName(chapter.Title), result)
 	if err != nil {
 		return err
 	}
